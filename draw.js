@@ -1,5 +1,5 @@
 var drawModule = (function () { 
-  console.log("bag");
+
   var bodySnake = function(x, y) {
         ctx.fillStyle = 'black';
         ctx.fillRect(x*snakeSize, y*snakeSize, snakeSize, snakeSize);
@@ -29,7 +29,7 @@ var drawModule = (function () {
   }
     
   var paint = function(){
-      ctx.fillStyle = 'lightgrey';
+      ctx.fillStyle = 'white';
       ctx.fillRect(0, 0, w, h);
       ctx.strokeStyle = 'black';
       ctx.strokeRect(0, 0, w, h);
@@ -83,11 +83,15 @@ var drawModule = (function () {
         x: Math.floor((Math.random() * 30) + 1),
         y: Math.floor((Math.random() * 30) + 1)
       }
+        
+      console.log(food);
+      console.log(snake);
+      console.log(snake.length);
 
       for (var i=0; i>snake.length; i++) {
         var snakeX = snake[i].x;
         var snakeY = snake[i].y;
-      
+
         if (food.x===snakeX && food.y === snakeY || food.y === snakeY && food.x===snakeX) {
           food.x = Math.floor((Math.random() * 30) + 1);
           food.y = Math.floor((Math.random() * 30) + 1);
@@ -107,7 +111,7 @@ var drawModule = (function () {
       direction = 'down';
       drawSnake();
       createFood();
-      gameloop = setInterval(paint, 80);
+      gameloop = setInterval(paint, 60);
   }
 
 

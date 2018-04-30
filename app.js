@@ -7,6 +7,8 @@ btn.addEventListener("click", function(){ drawModule.init();});
 
         keyCode = window.event.keyCode; 
         keyCode = event.keyCode;
+        
+        //console.log(window.event);
 
         switch(keyCode) {
         
