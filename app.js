@@ -12,19 +12,19 @@
 
         switch(keyCode) {
         
-            case 37:  // left 
+            case 65:  // left 
                 body.x--;
                 break;
 
-            case 39:  // right
+            case 68:  // right
                 body.x++;
                 break;
 
-            case 38:  // up
+            case 87:  // up
                 body.y--;
                 break;
 
-            case 40: // down
+            case 83: // down
                 body.y++;
                 break;
         }
