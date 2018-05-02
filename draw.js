@@ -14,14 +14,19 @@ var drawModule = (function () {
         ctx.fillRect(x*bodySize+1, y*bodySize+1, bodySize-2, bodySize-2);
   }
 
-   function scoreText () {
-    var score_text = "Score: " + score;
-    ctx.fillStyle = 'blue';
-    ctx.fillText(score_text, 145, h-5);
+  function scoreText () {
+      var score_text = "Score: " + score;
+      ctx.fillStyle = 'blue';
+      ctx.fillText(score_text, 145, h-5);
   }
 
   function createBody () {
-    body = { x : 0, y : 0 };
+      body = { x : 0, y : 0 };
+  }
+
+  function drawBullet (x, y){
+      ctx.fillStyle = 'black';
+      ctx.fillRect(x*bodySize+5, y*bodySize+5, bulletSize, bulletSize);
   }
   
   function paint (){
@@ -75,8 +80,9 @@ var drawModule = (function () {
 
 
     return {
-      init : init,
-      drawBody : drawBody
+        init : init,
+        drawBody : drawBody,
+        drawBullet : drawBullet
     };
 
     
