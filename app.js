@@ -10,7 +10,6 @@
         var bodyX = body.x;
         var bodyY = body.y;
         
-        console.log(keyCode);
         //movement
         switch(keyCode) {
         
