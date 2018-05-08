@@ -26,40 +26,27 @@ var drawModule = (function () {
     }
 
     function drawBullet (x, y){
+        //draw();
+        console.log(x, y);
         ctx.fillStyle = 'black';
         ctx.fillRect(x*bodySize+5, y*bodySize+5, bulletSize, bulletSize);
+        ctx.fillRect(x*bodySize, y*bodySize, bodySize, bodySize);
     }
   
-    function draw (){
-        // draw the map
-        ctx.fillStyle = 'white';
-        ctx.fillRect(0, 0, w, h);
-        ctx.strokeStyle = 'black';
-        ctx.strokeRect(0, 0, w, h);
-        //
-
-        btn.setAttribute('disabled', true);
-
-    }
- 
-    function paint (){
-        ctx.fillStyle = 'white';
-        ctx.fillRect(0, 0, w, h);
-        ctx.strokeStyle = 'black';
-        ctx.strokeRect(0, 0, w, h);
-
-        btn.setAttribute('disabled', true);
-        
+    function endMapCollision (){
         if (body.x == -1 || body.x == w/bodySize || body.y == -1 || body.y == h/bodySize) {
           //restart game
           btn.removeAttribute('disabled', true);
 
           ctx.clearRect(0,0,w,h);
-          gameloop = clearInterval(gameloop);
           return;          
         }
         
-        if(body.x == food.x && body.y == food.y) {
+
+    }
+    
+    function scorePoint(x, y) {
+       if(x == food.x && y == food.y) {
             score ++;
           
             createFood(); 
@@ -70,38 +57,45 @@ var drawModule = (function () {
             createFood();
         }
         
-        drawModule.drawBody(body.x, body.y); 
+        //drawModule.drawBody(body.x, body.y); 
         pizza(food.x, food.y); 
         scoreText();
+
+    }
+ 
+    function draw (){
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, w, h);
+        ctx.strokeStyle = 'black';
+        ctx.strokeRect(0, 0, w, h);
+
+        btn.setAttribute('disabled', true);
+        
+        pizza(food.x, food.y);
     }
 
     function createFood () {
-      food = {
-        x: Math.floor((Math.random() * 30) + 1),
-        y: Math.floor((Math.random() * 30) + 1)
-      }
-  }
+        food = {
+            x: Math.floor((Math.random() * 30) + 1),
+            y: Math.floor((Math.random() * 30) + 1)
+        }
+    }
 
-  function checkCollision (x, y, array) { // might be used later.
-      for(var i = 0; i < array.length; i++) {
-        if(array[i].x === x && array[i].y === y)
-        return true;
-      } 
-      return false;
-  }
-
-  function init (){
-      createBody();
-      createFood();
-      gameloop = setInterval(paint, 60);
-  }
-
+    function checkCollision (x, y, array) { // might be used later.
+        for(var i = 0; i < array.length; i++) {
+            if(array[i].x === x && array[i].y === y)
+                return true;
+        } 
+        return false;
+     }
 
     return {
-        init : init,
+        createBody : createBody,
         drawBody : drawBody,
         drawBullet : drawBullet,
-        draw : draw
+        draw : draw,
+        scorePoint : scorePoint,
+        createFood : createFood
     };
 
     

@@ -1,15 +1,23 @@
 (function (window, document, drawModule, undefined) {
 
     var btn = document.getElementById('btn');
-    
-    btn.addEventListener("click", function(){ drawModule.init();});
-	document.onkeydown = function(event) {
 
+    drawModule.createBody(); 
+    drawModule.createFood();
+    //console.log(body);
+    
+    btn.addEventListener("click", function(){ drawModule.draw();});
+	document.onkeydown = function(event) {
+        
+        drawModule.scorePoint();
+        
         keyCode = event.keyCode;
         
         var bodyX = body.x;
         var bodyY = body.y;
         
+        drawModule.scorePoint(bodyX, bodyY);
+ 
         //movement
         switch(keyCode) {
         
